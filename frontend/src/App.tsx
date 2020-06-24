@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductFormPage from './pages/ProductFormPage'
+import ProductPage from './pages/ProductPage'
 // Routers
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
@@ -24,6 +25,7 @@ function App() {
         <div className="container-fluid">
         <Switch>
           <Route exact path="/product/form" component={ProductFormPage}/>
+          <Route exact path="/products" component={ProductPage}/>
         </Switch>
         </div>
         </Router>
