@@ -12,8 +12,7 @@ import {deleteProductMutation} from '../gql/mutations'
 // Components
 import ProductRow from '../components/ProductRow';
 
-// for redirecting and response to user
-import {useHistory} from 'react-router-dom'
+// for response to user
 import Swal from 'sweetalert2'
 
 interface Props{

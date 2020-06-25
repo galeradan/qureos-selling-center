@@ -13,6 +13,7 @@ const app = express()
 // let port = process.env.PORT || 4000
 let port = 4000
 
+// temporary placement of credentials
 const dbname = "qureos-db"
 const uname = "admin"
 const password = "qureosAdmin123"
