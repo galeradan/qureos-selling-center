@@ -10,8 +10,11 @@ import {flowRight as compose} from 'lodash';
 import {updateProductMutation} from '../gql/mutations'
 import {getProductQuery, getProductsQuery} from '../gql/queries'
 
+// for redirecting and response to user
 import {useHistory} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
+// types
 interface Props{
     getProductQuery: any;
     updateProductMutation: any;
@@ -19,6 +22,7 @@ interface Props{
 
 const ProductFormPage:React.FC<Props> =(props)=>{
     let getProduct = props.getProductQuery.product
+    let history = useHistory();
 
 	// initialise useState for this variables
 	const [title, setTitle] = React.useState<string>('')
@@ -27,6 +31,7 @@ const ProductFormPage:React.FC<Props> =(props)=>{
     const [price, setPrice] = React.useState<any>(0)
     const [loading, setLoading] = React.useState<boolean>(true)
     
+    // Loads data and set it as a value of inputs
     React.useEffect(()=>{
         if(getProduct!==undefined){
             setId(getProduct.id)
@@ -54,25 +59,49 @@ const ProductFormPage:React.FC<Props> =(props)=>{
 
 	// function to handle submission
 	const onUpdate=()=>{
-        // alert('Update')
-        props.updateProductMutation({
-            variables: {
-                id: id,
-                title: title,
-                description: description,
-                price: parseFloat(price)
-            },
-            refetchQueries: [
-                                {query: getProductsQuery},
-                                {query: getProductQuery,
-                                    variables: {
-                                        id: id
+       
+        // Make sure variables are not empty strings, if empty strings throw a warning alert
+        if(title !=='' && description !=='' && price !==''){
+            // run update product mutation if passed
+            props.updateProductMutation({
+                variables: {
+                    id: id,
+                    title: title,
+                    description: description,
+                    price: parseFloat(price)
+                },
+                refetchQueries: [
+                                    {query: getProductsQuery},
+                                    {query: getProductQuery,
+                                        variables: {
+                                            id: id
+                                        }
                                     }
-                                }
-                            ]
-        }).then(()=>{
-            
-        })
+                                ]
+            }).then((res:any)=>{
+                // If successful show success alert and redirect to manage page
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Product succesfully updated',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then(()=>{
+                        history.push(`/products/manage`)
+                  })
+            },
+            // If encountered any error show Error alert
+            (err:any)=>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something went wrong',
+                    showConfirmButton: true,
+                  })
+            })
+        }else{
+           
+        }
+
+        
 	}
 
 	return(
@@ -101,7 +130,6 @@ const ProductFormPage:React.FC<Props> =(props)=>{
 }
 
 export default compose(
-					// graphql<any>(addProductMutation, {name: 'addProductMutation'}),
                     graphql<any>(getProductQuery, 
                         {   options: (props)=>{
                             return {

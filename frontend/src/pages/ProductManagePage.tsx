@@ -9,7 +9,12 @@ import {flowRight as compose} from 'lodash';
 import {getProductsQuery} from '../gql/queries'
 import {deleteProductMutation} from '../gql/mutations'
 
+// Components
 import ProductRow from '../components/ProductRow';
+
+// for redirecting and response to user
+import {useHistory} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 interface Props{
     getProductsQuery: any;
@@ -23,10 +28,40 @@ const ProductManagePage:React.FC<Props> =(props)=>{
 
     // Function to run when deleting a product
     const onDeleteProduct =(id: any)=>{
-        props.deleteProductMutation({
-            variables: {id: id},
-            refetchQueries: [{query: getProductsQuery}]
-        })
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Proceed deleting product'
+          }).then((result:any) => {
+            if (result.value) {
+                props.deleteProductMutation({
+                    variables: {id: id},
+                    refetchQueries: [{query: getProductsQuery}]
+                }).then((res:any)=>{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Product succesfully deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                },
+                (err:any)=>{
+                    Swal.fire(
+                        'Something went wrong!',
+                        'The was not deleted',
+                        'error'
+                      ) 
+                })
+              
+            }
+          })
+
+        
     }
 
     return(

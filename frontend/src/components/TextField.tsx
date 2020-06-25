@@ -11,10 +11,17 @@ const TextField: React.FC<Props> = ({label, type, fn, value}) =>{
 
 	let identity = label?.toLowerCase();
 	
+
 	return(
 			<React.Fragment>
 				<label htmlFor={identity}>{label}</label>
-				<input id={identity} type={type} onChange={fn} className="form-control" value={value}/>
+				<input 
+					id={identity} 
+					type={type} 
+					onChange={fn} 
+					className="form-control" 
+					value={value} 
+					step="0.01"/>
 			</React.Fragment>
 		);
 }
