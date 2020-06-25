@@ -5,10 +5,14 @@ import TextArea from '../components/TextArea'
 // GraphQL ApolloBoost Dependencies
 import {graphql} from 'react-apollo'
 import {flowRight as compose} from 'lodash';
+
+// Grapqhl
 import {addProductMutation} from '../gql/mutations'
+import {getProductsQuery} from '../gql/queries'
 
 interface Props{
 	addProductMutation: (arg: {})=>any;
+	getProductsQuery: any;
 }
 
 const ProductFormPage:React.FC<Props> =(props)=>{
@@ -17,7 +21,6 @@ const ProductFormPage:React.FC<Props> =(props)=>{
 	const [title, setTitle] = React.useState<string>('')
 	const [description, setDescription] = React.useState<string>('')
 	const [price, setPrice] = React.useState<any>()
-
 
 	// function to setTitle onChange
 	const onChangeTitle=(e:React.ChangeEvent<any>)=>{
@@ -44,7 +47,8 @@ const ProductFormPage:React.FC<Props> =(props)=>{
 				title: title,
 				description: description,
 				price: parseFloat(price)
-			}
+			},
+			refetchQueries: [{query: getProductsQuery}]
 		}).then((res: any)=>{
 			console.log(res)
 		})
@@ -70,4 +74,7 @@ const ProductFormPage:React.FC<Props> =(props)=>{
 
 }
 
-export default compose(graphql(addProductMutation, {name: 'addProductMutation'}))(ProductFormPage);
+export default compose(
+					graphql<any>(addProductMutation, {name: 'addProductMutation'}),
+					graphql<any>(getProductsQuery, {name: 'getProductsQuery'})
+					)(ProductFormPage);

@@ -16,16 +16,18 @@ const ProductCard: React.FC<Props> = ({product}) =>{
 	
 	return(
 			<React.Fragment>
-                <div className="col-md-3">
+                <div className="col-md-3 pb-3">
                     <div className="card h-100">
-                        <div className="card-header">
-                            <p className="card-title">{product.title}</p>
-                        </div>
                         <div className="card-body">
-                            <p className="card-text">{product.description}</p>
+                            <h5 className="card-title">
+                                {product.title}
+                            </h5>
+                            <p className="card-text">
+                                {product.description}
+                            </p>
                         </div>
                         <div className="card-footer">
-                            <p className="card-text">{product.price}</p>
+                            <p className="card-text">Price: {product.price}</p>
                         </div>
                     </div>	
                 </div>

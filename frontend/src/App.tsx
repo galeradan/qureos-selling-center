@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 // Apollo Client Dependencies
 import ApolloClient from 'apollo-boost'
 import {ApolloProvider} from 'react-apollo'
+import AppNavBar from './components/AppNavBar';
 
 
 // instantiate a new client and wrap the app
@@ -22,10 +23,12 @@ function App() {
     <React.Fragment>
       <ApolloProvider client={client}>
         <Router>
-        <div className="container-fluid">
+        <AppNavBar/>
+        <div className="container-fluid pt-3">
         <Switch>
-          <Route exact path="/product/form" component={ProductFormPage}/>
           <Route exact path="/products" component={ProductPage}/>
+          <Route path="/products/manage" component={ProductFormPage}/>
+          <Redirect from="/" to="/products"/>
         </Switch>
         </div>
         </Router>
