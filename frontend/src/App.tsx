@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductFormPage from './pages/ProductFormPage'
+import ProductEditPage from './pages/ProductEditPage'
+import ProductManagePage from './pages/ProductManagePage'
 import ProductPage from './pages/ProductPage'
 // Routers
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
@@ -27,7 +29,9 @@ function App() {
         <div className="container-fluid pt-3">
         <Switch>
           <Route exact path="/products" component={ProductPage}/>
-          <Route path="/products/manage" component={ProductFormPage}/>
+          <Route exact path="/products/manage" component={ProductManagePage}/>
+          <Route path="/products/manage/new" component={ProductFormPage}/>
+          <Route path="/products/manage/edit/:id" component={ProductEditPage}/>
           <Redirect from="/" to="/products"/>
         </Switch>
         </div>

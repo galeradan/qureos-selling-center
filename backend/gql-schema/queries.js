@@ -2,7 +2,8 @@ const {
     GraphQLString,
     GraphQLID,
     GraphQLList,
-    GraphQLObjectType
+    GraphQLObjectType,
+	GraphQLNonNull
 } = require('graphql')
 
 const {
@@ -26,5 +27,15 @@ module.exports = new GraphQLObjectType({
 		        return Product.find({})
 		    }
 		},
+		product:{
+			type: ProductType,
+			args: {
+				id: {type: GraphQLID}
+			},
+			resolve:(parent, args)=>{
+				return Product.findById(args.id)
+			}
+		}
+
 	}
 })

@@ -1,6 +1,7 @@
 import {gql} from 'apollo-boost'
 
 
+// Gets all Products
 const getProductsQuery = gql`
 {
   products{
@@ -11,6 +12,20 @@ const getProductsQuery = gql`
    }
 }`
 
+
+// Gets single Product
+
+const getProductQuery = gql`
+query($id: ID!){
+  product(id: $id){
+     id
+     title
+     description
+     price
+   }
+}`
+
 export {
-	getProductsQuery
+  getProductsQuery,
+  getProductQuery
 }

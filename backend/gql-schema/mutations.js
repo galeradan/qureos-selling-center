@@ -29,7 +29,7 @@ module.exports = new GraphQLObjectType({
 				description: {type: new GraphQLNonNull(GraphQLString)},
 				price: {type: new GraphQLNonNull(GraphQLFloat)},
 			},
-			resolve:(parents,args)=>{
+			resolve:(parent,args)=>{
 				let newProduct = new Product({
 					title: args.title,
 					description: args.description,
@@ -38,5 +38,33 @@ module.exports = new GraphQLObjectType({
 				return newProduct.save()
 			}
 		},
+		updateProduct: {
+			type: ProductType,
+			args: {
+				id: {type: new GraphQLNonNull(GraphQLID)},
+				title: {type: new GraphQLNonNull(GraphQLString)},
+				description: {type: new GraphQLNonNull(GraphQLString)},
+				price: {type: new GraphQLNonNull(GraphQLFloat)}
+			},
+			resolve:(parent,args)=>{
+				let productId = {_id: args.id}
+				let updateProduct = {
+										title: args.title,
+										description: args.description,
+										price: args.price
+									}
+				return Product.findOneAndUpdate(productId, {$set: updateProduct}, function(product){return product})
+			}
+		},
+		deleteProduct:{
+			type: ProductType,
+			args: {
+				id: {type: new GraphQLNonNull(GraphQLID)},
+			},
+			resolve:(parent, args)=>{
+				let productId = {_id: args.id}
+				return Product.findOneAndDelete(productId)
+			}
+		}
 	}
 })

@@ -18,9 +18,9 @@ const ProductPage:React.FC<Props> =(props)=>{
 	let products = props.getProductsQuery.products
 
 	return(
-
-			<React.Fragment>
 				<div className="container">
+					<h2>Products</h2>
+					<hr/>
 					<div className="row d-flex align-items-stretch">
 						{
 							products===undefined? <p>Loading...</p> :
@@ -32,10 +32,6 @@ const ProductPage:React.FC<Props> =(props)=>{
 						}
 					</div>
 				</div>
-
-					
-				
-			</React.Fragment>
 
 		)
 
