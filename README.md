@@ -12,4 +12,4 @@ Developed using MERN with GraphQL
 - Intially used Bootstrap but migrated it to Tailwind (CDN) for the CSS Framework 
 - Added ESLint and Prettier for the Frontend test
 
-Note: Im new to both TypeScript and Tailwind, aiming to improve mastery on these two technologies and the current technologies I know.
+Im new to both TypeScript and Tailwind, aiming to improve mastery on these two technologies and the current technologies I know.
