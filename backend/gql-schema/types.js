@@ -11,7 +11,6 @@ const {
 const {GraphQLDateTime} = require('graphql-iso-date')
 
 const Tour = require('../models/product')
-const User = require('../models/user')
 
 const ProductType = new GraphQLObjectType({
 	name: "Product",
@@ -25,21 +24,7 @@ const ProductType = new GraphQLObjectType({
 	}) 
 })
 
-const UserType = new GraphQLObjectType({
-	name: "User",
-	fields: () => ({
-		id: {type: GraphQLID},
-		name: {type: GraphQLString},
-		email: {type: GraphQLString},
-		password: {type: GraphQLString},
-		role: {type: GraphQLInt},
-		token: { type: GraphQLString },
-		createdAt: {type: GraphQLDateTime},
-		updatedAt: {type: GraphQLDateTime},
-	}) 
-})
 
 module.exports = {
-    ProductType,
-    UserType
+    ProductType
 }

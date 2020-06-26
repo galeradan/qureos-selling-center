@@ -10,13 +10,11 @@ const {
 } = require('graphql')
 
 const {
-    UserType,
     ProductType
 } = require('./types')
 
 // Mongoose models.
 const Product = require('../models/product')
-const User = require('../models/user')
 
 
 module.exports = new GraphQLObjectType({

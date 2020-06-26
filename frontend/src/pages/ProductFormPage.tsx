@@ -45,8 +45,10 @@ const ProductFormPage: React.FC<Props> = (props) => {
 
   // function to handle submission
   const onSubmit = () => {
+    // prevent negative prices
+    let validatedPrice = Math.sign(price)
     // Make sure variables are not empty strings, if empty strings throw a warning alert
-    if (title !== '' && description !== '' && price !== '') {
+    if (title !== '' && description !== '' && price !== '' &&validatedPrice!==-1) {
       // run add product mutation if passed
       props
         .addProductMutation({
@@ -82,7 +84,7 @@ const ProductFormPage: React.FC<Props> = (props) => {
       Swal.fire({
         icon: 'warning',
         title: 'Something went wrong',
-        text: 'Please check your fields. Make sure they are not empty',
+        text: 'Please check your fields. Make sure they are not empty and price is not negative',
         showConfirmButton: true,
       });
     }

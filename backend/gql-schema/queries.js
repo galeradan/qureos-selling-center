@@ -8,12 +8,10 @@ const {
 
 const {
     ProductType,
-	UserType,
 } = require('./types')
 
 // Mongoose models.
 const Product = require('../models/product')
-const User = require('../models/user')
 
 
 // Query declaration and expor
