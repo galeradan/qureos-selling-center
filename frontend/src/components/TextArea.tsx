@@ -1,23 +1,30 @@
-import React from 'react'
+import React from 'react';
 
-interface Props{
-	label: string;
-    fn: (e: React.ChangeEvent<any>)=>void;
-    cols: number,
-	rows: number,
-	value?: any,
+interface Props {
+  label: string;
+  fn: (e: React.ChangeEvent<any>) => void;
+  cols: number;
+  rows: number;
+  value?: any;
 }
 
-const TextField: React.FC<Props> = ({label, fn, cols, rows, value}) =>{
+const TextField: React.FC<Props> = ({ label, fn, cols, rows, value }) => {
+  const identity = label?.toLowerCase();
 
-	let identity = label?.toLowerCase();
-	
-	return(
-			<React.Fragment>
-				<label htmlFor={identity}>{label}</label>
-				<textarea name={identity} id={identity} cols={cols} rows={rows} onChange={fn} value={value} className="form-control"></textarea>
-			</React.Fragment>
-		);
-}
+  return (
+    <>
+      <label htmlFor={identity}>{label}</label>
+      <textarea
+        name={identity}
+        id={identity}
+        cols={cols}
+        rows={rows}
+        onChange={fn}
+        value={value}
+        className="form-control"
+      />
+    </>
+  );
+};
 
-export default TextField
+export default TextField;
