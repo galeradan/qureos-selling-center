@@ -59,7 +59,7 @@ const ProductFormPage: React.FC<Props> = (props) => {
 
   // function to handle submission
   const onUpdate = () => {
-
+    // prevent negative prices
     let validatedPrice = Math.sign(price)
     // Make sure variables are not empty strings, if empty strings throw a warning alert
     if (title !== '' && description !== '' && price !== ''&& validatedPrice!==-1) {

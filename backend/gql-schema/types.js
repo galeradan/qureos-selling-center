@@ -10,7 +10,7 @@ const {
 } = require('graphql')
 const {GraphQLDateTime} = require('graphql-iso-date')
 
-const Tour = require('../models/product')
+const Product = require('../models/product')
 
 const ProductType = new GraphQLObjectType({
 	name: "Product",
