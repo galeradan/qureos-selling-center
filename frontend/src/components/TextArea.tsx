@@ -13,7 +13,12 @@ const TextField: React.FC<Props> = ({ label, fn, cols, rows, value }) => {
 
   return (
     <>
-      <label htmlFor={identity}>{label}</label>
+      <label
+        htmlFor={identity}
+        className="block text-gray-700 text-sm font-bold mb-2"
+      >
+        {label}
+      </label>
       <textarea
         name={identity}
         id={identity}
@@ -21,7 +26,7 @@ const TextField: React.FC<Props> = ({ label, fn, cols, rows, value }) => {
         rows={rows}
         onChange={fn}
         value={value}
-        className="form-control"
+        className="shadow appearance-none border rounded w-full py-2 px-3 mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
     </>
   );

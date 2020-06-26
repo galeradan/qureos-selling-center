@@ -81,27 +81,29 @@ const ProductFormPage: React.FC<Props> = (props) => {
       // show warning if variables value is empty string
       Swal.fire({
         icon: 'warning',
-        title: 'Somethings wrong',
-        text: 'Please check your fields',
+        title: 'Something went wrong',
+        text: 'Please check your fields. Make sure they are not empty',
         showConfirmButton: true,
       });
     }
   };
 
   return (
-    <div className="row d-flex justify-content-center">
-      <div className="col-md-6">
-        <div className="form-group">
-          <TextField label="Title" type="text" fn={onChangeTitle} />
-          <TextArea
-            label="Description"
-            fn={onChangeDescription}
-            cols={20}
-            rows={10}
-          />
-          <TextField label="Price" type="number" fn={onChangePrice} />
-        </div>
-        <button type="button" onClick={onSubmit} className="btn btn-primary">
+    <div className="container mx-auto md:px-20 ">
+      <div className="grid mt-5 mx-5 md:grid-cols-1">
+        <TextField label="Title" type="text" fn={onChangeTitle} />
+        <TextArea
+          label="Description"
+          fn={onChangeDescription}
+          cols={20}
+          rows={10}
+        />
+        <TextField label="Price" type="number" fn={onChangePrice} />
+        <button
+          type="button"
+          onClick={onSubmit}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
           Create New Product
         </button>
       </div>

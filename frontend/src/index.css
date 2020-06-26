@@ -19,10 +19,14 @@ code {
   box-shadow: 0px 0px 6px 0px hsla(0, 0%, 0%, 0.2);
 }
 
-.card{
-	box-shadow: 0px 0px 6px 0px hsla(0, 0%, 0%, 0.2);
-}
-
 .active{
   border-bottom: 2px solid #07aaf5;
 }
+
+/* .desc{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+} */

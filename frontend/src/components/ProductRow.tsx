@@ -18,28 +18,26 @@ const ProductRow: React.FC<Props> = ({
 }) => {
   return (
     <tr>
-      <td>{title}</td>
-      <td>{description}</td>
-      <td>{price}</td>
-      <td className="text-right">
-        <span className="mr-1">
-          <NavLink
-            to={`/products/manage/edit/${id}`}
-            className="btn btn-primary mb-1"
-          >
-            Update
-          </NavLink>
-        </span>
-        <span className="mr-1">
-          <button
-            type="button"
-            className="btn btn-danger mb-1"
-            onClick={() => onDelete(id)}
-          >
-            {' '}
-            Delete
-          </button>
-        </span>
+      <td className="border px-4 py-2">{title}</td>
+      <td className="border px-4 py-2 whitespace-normal break-words">
+        {description}
+      </td>
+      <td className="border px-4 py-2">{price}</td>
+      <td className="border px-4 py-5 text-center">
+        <NavLink
+          to={`/products/manage/edit/${id}`}
+          className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded mb-3 mr-2"
+        >
+          Update
+        </NavLink>
+
+        <button
+          type="button"
+          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mt-3 mb-3 mr-2"
+          onClick={() => onDelete(id)}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );

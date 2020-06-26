@@ -103,17 +103,17 @@ const ProductFormPage: React.FC<Props> = (props) => {
         );
     } else {
       Swal.fire({
-        icon: 'error',
         title: 'Something went wrong',
-        text: 'Please check your fields',
+        text: 'Please check your fields. Make sure they are not empty',
+        icon: 'warning',
         showConfirmButton: true,
       });
     }
   };
 
   return (
-    <div className="row d-flex justify-content-center">
-      <div className="col-md-8">
+    <div className="container mx-auto md:px-20 ">
+      <div className="grid mt-5 mx-5 md:grid-cols-1">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -140,7 +140,11 @@ const ProductFormPage: React.FC<Props> = (props) => {
           </div>
         )}
 
-        <button type="button" onClick={onUpdate} className="btn btn-primary">
+        <button
+          type="button"
+          onClick={onUpdate}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
           Save
         </button>
       </div>

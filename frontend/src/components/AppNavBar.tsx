@@ -1,34 +1,38 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const AppNavBar = () => {
   return (
     <>
-      <Navbar className="nav-custom">
-        <Navbar.Brand as={NavLink} activeClassName="" to="/products">
-          Seller Center
-        </Navbar.Brand>
-        <Nav className="ml-auto flex-row">
-          <Nav.Link
-            as={NavLink}
-            activeClassName="active"
-            to="/products"
-            exact
-            className="mr-1"
-          >
-            Products
-          </Nav.Link>
-          <Nav.Link
-            as={NavLink}
-            activeClassName="active"
-            to="/products/manage"
-            className=""
-          >
-            Manage
-          </Nav.Link>
-        </Nav>
-      </Navbar>
+      <nav className="flex items-center justify-between flex-wrap p-4 nav-custom ">
+        <div className="flex items-center flex-shrink-0 text-black mr-6">
+          <NavLink to="/products" activeClassName="">
+            <span className="font-semibold text-xl tracking-tight">
+              Seller Center
+            </span>
+          </NavLink>
+        </div>
+        <div className="w-full block flex-grow lg:text-right lg:flex lg:items-center lg:w-auto">
+          <div className="text-md lg:flex-grow">
+            <NavLink
+              activeClassName="active"
+              to="/products"
+              exact
+              className="block mt-4 lg:inline-block lg:mt-0 text-dark-200 hover:text-dark mr-4"
+            >
+              Products
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              to="/products/manage"
+              className="block mt-4 lg:inline-block lg:mt-0 text-dark-200 hover:text-dark mr-4"
+            >
+              {' '}
+              Manage
+            </NavLink>
+          </div>
+        </div>
+      </nav>
     </>
   );
 };

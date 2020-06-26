@@ -62,51 +62,61 @@ const ProductManagePage: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="container">
-      <h2>Manage Products</h2>
+    <div className="container mx-auto px-4">
+      <h2 className="text-3xl mb-2">Manage Product</h2>
       <hr />
-      <div className="form-group">
-        <NavLink to="/products/manage/new" className="btn btn-primary">
+      <div className="mt-3 mb-3">
+        <NavLink
+          to="/products/manage/new"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
           Add New
         </NavLink>
       </div>
-      <div className="row">
-        <div className="col-md-12 table-responsive">
-          <table className="table">
-            <thead>
+      <div className="grid overflow-y-auto grid-cols-1 bg-white shadow-md rounded px-1 pt-6 pb-8 mb-4">
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th scope="col" className="bg-blue-500 text-white px-4 py-2">
+                Title
+              </th>
+              <th scope="col" className="bg-blue-500 text-white px-4 py-2">
+                Description
+              </th>
+              <th scope="col" className="bg-blue-500 text-white px-4 py-2">
+                Price
+              </th>
+              <th
+                scope="col"
+                className="bg-blue-500 text-white px-4 py-2 text-right"
+              >
+                Manage
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {products === undefined ? (
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col" className="text-right">
-                  Manage
-                </th>
+                <td colSpan={4} className="text-center">
+                  Loading...
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {products === undefined ? (
-                <tr>
-                  <td colSpan={4} className="text-center">
-                    Loading...
-                  </td>
-                </tr>
-              ) : (
-                products.map((product: any) => {
-                  return (
-                    <ProductRow
-                      key={product.id}
-                      id={product.id}
-                      title={product.title}
-                      description={product.description}
-                      price={product.price}
-                      onDelete={onDeleteProduct}
-                    />
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
+            ) : (
+              products.map((product: any) => {
+                return (
+                  <ProductRow
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    onDelete={onDeleteProduct}
+                  />
+                );
+              })
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
